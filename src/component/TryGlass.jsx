@@ -78,14 +78,29 @@ export default class TryGlass extends Component {
   createImg = () => {
     return itemGlass.map((item, index) => {
       return (
-        <div
-          className="col-6"
-          key={index}
-          onClick={() => {
-            this.setState({ glassDefault: item });
-          }}
-        >
-          <img className="w-100" src={item.url} alt="..." />
+        // <div
+        //   className="col-6"
+        //   key={index}
+        //   onClick={() => {
+        //     this.setState({ glassDefault: item });
+        //   }}
+        // >
+        //   <img className="w-100" src={item.url} alt="..." />
+        // </div>
+        <div className="card col-2">
+          <img className="card-img-top" src={item.url} alt="Title" />
+          <div className="card-body">
+            <h4 className="card-title">{item.name}</h4>
+            <p className="card-text">{item.price}</p>
+            <button
+              className="btn btn-success"
+              onClick={() => {
+                this.setState({ glassDefault: item });
+              }}
+            >
+              Try
+            </button>
+          </div>
         </div>
       );
     });
@@ -98,6 +113,7 @@ export default class TryGlass extends Component {
     let { url, desc, name, price } = this.state.glassDefault;
     return (
       <div className="main-try container mt-3">
+        <div className="w-100 row container">{this.createImg()}</div>
         <div className=" d-flex justify-content-around ">
           <div>
             <h3>Try Glass</h3>
@@ -123,7 +139,6 @@ export default class TryGlass extends Component {
               <h3>{price}$</h3>
             </div>
           </div>
-          <div className="w-100 row container">{this.createImg()}</div>
         </div>
       </div>
     );
